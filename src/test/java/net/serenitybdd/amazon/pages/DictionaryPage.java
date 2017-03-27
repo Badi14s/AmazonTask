@@ -14,7 +14,8 @@ import java.util.List;
 
 import static ch.lambdaj.Lambda.convert;
 
-@DefaultUrl("http://en.wiktionary.org/wiki/Wiktionary")
+@DefaultUrl("http://www.amazon.co.uk")
+//@DefaultUrl("http://en.wiktionary.org/wiki/Wiktionary")
 public class DictionaryPage extends PageObject {
 
     @FindBy(name="search")
@@ -22,6 +23,10 @@ public class DictionaryPage extends PageObject {
 
     @FindBy(name="go")
     private WebElementFacade lookupButton;
+
+    @FindBy (id="nav-link-shopall")
+    private WebElementFacade shopByDepartment;
+
 
     public void enter_keywords(String keyword) {
         searchTerms.type(keyword);

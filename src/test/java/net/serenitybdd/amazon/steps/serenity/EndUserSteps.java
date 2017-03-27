@@ -28,8 +28,13 @@ public class EndUserSteps {
     }
 
     @Step
-    public void is_the_home_page() {
+    public void navigate_to_homepage() {
         dictionaryPage.open();
+    }
+
+    @Step
+    public void navigate_to_section_books() {
+        dictionaryPage.find().click();
     }
 
     @Step
