@@ -1,4 +1,4 @@
-Search for definitions
-In order to understand a word that I don't know
-As a user
-I want to be able to look up the meaning of the word
+Shop for book definition
+In order to purchase it later
+As a customer
+I want to add a book to my shopping basket
