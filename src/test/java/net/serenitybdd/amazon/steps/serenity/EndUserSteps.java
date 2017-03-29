@@ -133,7 +133,7 @@ public class EndUserSteps {
 
     @Step
     public void verify_subtotal_price_list_page_is(String keyword){
-        assertTrue(dictionaryPage.firstHeaderPriceBasketList.containsText(keyword));
+        assertTrue(dictionaryPage.subtotalPrice.containsText(keyword));
     }
 
 }

@@ -97,7 +97,7 @@ public class DictionaryPage extends PageObject {
     @FindBy (xpath = "//span[@class='a-dropdown-prompt'][1]")
     public WebElementFacade firstHeaderQuantityBasketList;
 
-    @FindBy (className = "a-size-medium a-color-price sc-price sc-white-space-nowrap  sc-price-sign")
+    @FindBy (xpath = "//span[@class='a-size-medium a-color-price sc-price sc-white-space-nowrap  sc-price-sign']")
     public WebElementFacade subtotalPrice;
 
 }
