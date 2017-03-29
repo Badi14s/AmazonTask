@@ -21,7 +21,6 @@ public class DictionaryPage extends PageObject {
     public WebElementFacade booksLink;
 
     @FindBy (id = "searchDropdownBox")
-    //@FindBy (xpath = "//select[@class='nav-search-dropdown searchSelect']")
     public WebElementFacade searchDropDown;
 
     @FindBy (xpath = "//div[@class='nav-search-scope nav-sprite']")
@@ -89,7 +88,6 @@ public class DictionaryPage extends PageObject {
     @FindBy (xpath = "//span[@class='a-size-medium sc-product-title a-text-bold'][1]")
     public WebElementFacade firstHeaderTitleBasketList;
 
-
     @FindBy (xpath = "//span[@class='a-size-small a-color-secondary sc-product-binding'][1]")
     public WebElementFacade firstHeaderSellTypeBasketList;
 
@@ -101,15 +99,5 @@ public class DictionaryPage extends PageObject {
 
     @FindBy (className = "a-size-medium a-color-price sc-price sc-white-space-nowrap  sc-price-sign")
     public WebElementFacade subtotalPrice;
-
-
-//    public void click_shop_by_department() {
-//        shopByDepartment.click();
-//    }
-//
-//    public void click_books_link() {
-//        booksLink.click();
-//    }
-
 
 }

@@ -18,10 +18,7 @@ public class EndUserSteps {
     @Step
     public void navigate_to_section_books(String keyword) {
         dictionaryPage.navSpriteDropDown.click();
-        //dictionaryPage.searchDropDown.selectByVisibleText("All Departments").click();
-        //dictionaryPage.searchDropDown.selectByValue("search-alias=warehouse-deals");
         dictionaryPage.optionBook.click();
-
     }
 
     @Step
