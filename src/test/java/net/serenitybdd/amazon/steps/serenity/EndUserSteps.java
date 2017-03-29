@@ -2,8 +2,11 @@ package net.serenitybdd.amazon.steps.serenity;
 
 import net.serenitybdd.amazon.pages.DictionaryPage;
 import net.thucydides.core.annotations.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
+import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 import static org.junit.Assert.assertTrue;
 
 public class EndUserSteps {
@@ -17,8 +20,8 @@ public class EndUserSteps {
 
     @Step
     public void navigate_to_section_books(String keyword) {
-        dictionaryPage.navSpriteDropDown.click();
-        dictionaryPage.optionBook.click();
+        Select dropdown = new Select(getDriver().findElement((By.id("searchDropdownBox"))));
+        dropdown.selectByVisibleText(keyword);
     }
 
     @Step

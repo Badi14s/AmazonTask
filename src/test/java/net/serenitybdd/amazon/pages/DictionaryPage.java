@@ -21,7 +21,7 @@ public class DictionaryPage extends PageObject {
     public WebElementFacade booksLink;
 
     @FindBy (id = "searchDropdownBox")
-    public WebElementFacade searchDropDown;
+    public WebElementFacade searchDropdownBox;
 
     @FindBy (xpath = "//div[@class='nav-search-scope nav-sprite']")
     public WebElementFacade navSpriteDropDown;
