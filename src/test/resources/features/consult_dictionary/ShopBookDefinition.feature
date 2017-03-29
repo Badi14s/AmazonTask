@@ -9,7 +9,7 @@ Feature: Shop for book definition
     And I search for book by title
     And I see that the first item's title on results page matches
     And I see that the first item has badge Best Seller
-#    And I see that the first item's price for type Hardcover matches
+    And I see that the first item's price for type Hardcover matches
     And I open the first item from results page
     And I see title on book details page mathes
     And I see badge Best Seller on book details page

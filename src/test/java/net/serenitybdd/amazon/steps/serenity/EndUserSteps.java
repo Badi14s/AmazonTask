@@ -2,13 +2,7 @@ package net.serenitybdd.amazon.steps.serenity;
 
 import net.serenitybdd.amazon.pages.DictionaryPage;
 import net.thucydides.core.annotations.Step;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
@@ -17,65 +11,40 @@ public class EndUserSteps {
     DictionaryPage dictionaryPage;
 
     @Step
-    public void enters(String keyword) {
-        dictionaryPage.enter_keywords(keyword);
-    }
-
-    @Step
-    public void starts_search() {
-        dictionaryPage.lookup_terms();
-    }
-
-//    @Step
-//    public void should_see_definition(String definition) {
-//        assertThat(dictionaryPage.getDefinitions(), hasItem(containsString(definition)));
-//    }
-
-    @Step
-    public void select_drop_down_menu(String kewword) {
-//        WebDriverWait wait = new WebDriverWait(dictionaryPage.getDriver(), 5);
-//        wait.until(ExpectedConditions.visibilityOf(dictionaryPage.searchDropDown));
-//        Select select = new Select(dictionaryPage.searchDropDown);
-//        select.deselectAll();
-//        select.selectByVisibleText(kewword);
-        dictionaryPage.select_option_from_drop_down_menu(kewword);
-
-    }
-
-    @Step
     public void navigate_to_homepage() {
         dictionaryPage.open();
     }
 
     @Step
-    public void navigate_to_section_books() {
-        dictionaryPage.click_shop_by_department();
-        dictionaryPage.clik_books_link();
-//        dictionaryPage.select_book_drop_down();
+    public void navigate_to_section_books(String keyword) {
+        dictionaryPage.navSpriteDropDown.click();
+        //dictionaryPage.searchDropDown.selectByVisibleText("All Departments").click();
+        //dictionaryPage.searchDropDown.selectByValue("search-alias=warehouse-deals");
+        dictionaryPage.optionBook.click();
 
     }
 
     @Step
     public void look_for(String term) {
-        dictionaryPage.enter_keywords(term);
-        dictionaryPage.lookup_terms();
+        dictionaryPage.searchTerms.type(term);
+        dictionaryPage.lookupButton.click();
     }
 
     // Results page
 
     @Step
-    public void verify_title_contains_text_results_page(String kewword){
-        assertTrue(dictionaryPage.firstHeaderTtitleResultsPage.containsText(kewword));
+    public void verify_title_contains_text_results_page(String keyword){
+        assertTrue(dictionaryPage.firstHeaderTtitleResultsPage.containsText(keyword));
     }
 
     @Step
-    public void verify_hardcover_type_price_results_page(String kewword){
-        assertTrue(dictionaryPage.priceHeaderHardcoverResultsPage.containsText(kewword));
+    public void verify_hardcover_type_price_results_page_is(String keyword){
+        assertTrue(dictionaryPage.priceHeaderHardcoverResultsPage.containsText(keyword));
     }
 
     @Step
-    public void verify_badge_results_page(String kewword){
-        assertTrue(dictionaryPage.firstHeaderBadgeResultsPage.containsText(kewword));
+    public void verify_badge_contains_text_results_page(String keyword){
+        assertTrue(dictionaryPage.firstHeaderBadgeResultsPage.containsText(keyword));
     }
 
     @Step
@@ -83,17 +52,16 @@ public class EndUserSteps {
         dictionaryPage.firstHeaderTtitleResultsPage.click();
     }
 
-
     // Details page
 
     @Step
-    public void verify_title_contains_text_details_page(String kewword){
-        dictionaryPage.headerTtitleDetailsPage.containsText(kewword);
+    public void verify_title_contains_text_details_page(String keyword){
+        dictionaryPage.headerTtitleDetailsPage.containsText(keyword);
     }
 
     @Step
-    public void verify_badge_details_page(String kewword){
-        assertTrue(dictionaryPage.headerBadgeDetailsPage.containsText(kewword));
+    public void verify_badge_contains_text_details_page(String keyword){
+        assertTrue(dictionaryPage.headerBadgeDetailsPage.containsText(keyword));
     }
 
     @Step
@@ -104,8 +72,8 @@ public class EndUserSteps {
     }
 
     @Step
-    public void verify_hardcover_type_price_details_page(String kewword){
-        dictionaryPage.hardCoverTypePriceDetailsPage.containsText(kewword);
+    public void verify_hardcover_type_price_details_page_is(String keyword){
+        dictionaryPage.hardCoverTypePriceDetailsPage.containsText(keyword);
     }
 
     @Step
@@ -116,21 +84,21 @@ public class EndUserSteps {
     // Basket section
 
     @Step
-    public void verify_item_is_added_to_basket(String kewword){
-        assertTrue(dictionaryPage.addedToBasketNotification.containsText(kewword));
+    public void verify_item_is_added_to_basket(String keyword){
+        assertTrue(dictionaryPage.addedToBasketNotification.containsText(keyword));
     }
 
     @Step
-    public void verify_title_in_basket_section_contains_text(String kewword){
+    public void verify_title_in_basket_section_contains_text(String keyword){
         Actions action = new Actions(dictionaryPage.getDriver());
         action.moveToElement(dictionaryPage.itemAddedToBasket).perform();
-        assertTrue(dictionaryPage.titleInBasketSection.containsText(kewword));
+        assertTrue(dictionaryPage.titleInBasketSection.containsText(keyword));
         action.moveToElement(dictionaryPage.cartPage).perform();
     }
 
     @Step
-    public void verify_items_in_basket_section_contains_text(String kewword){
-        assertTrue(dictionaryPage.itemsInBasketSection.containsText(kewword));
+    public void verify_items_in_basket_section_contains_text(String keyword){
+        assertTrue(dictionaryPage.itemsInBasketSection.containsText(keyword));
     }
 
     @Step
@@ -145,7 +113,30 @@ public class EndUserSteps {
         dictionaryPage.secondItemInBasketList.shouldNotBeVisible();
     }
 
+    @Step
+    public void verify_first_item_title_contains_text_list_page(String keyword){
+        assertTrue(dictionaryPage.firstHeaderTitleBasketList.containsText(keyword));
+    }
 
+    @Step
+    public void verify_first_item_sell_type_is(String keyword){
+        assertTrue(dictionaryPage.firstHeaderSellTypeBasketList.containsText(keyword));
+    }
 
+    @Step
+    public void verify_first_item_hardcover_type_price_list_page_is(String keyword){
+        assertTrue(dictionaryPage.firstHeaderPriceBasketList.containsText(keyword));
+    }
+
+    @Step
+    public void verify_first_item_quantity_list_page_is(int number){
+        int compare = Integer.parseInt((dictionaryPage.firstHeaderQuantityBasketList.getText()));
+        assertTrue(compare == number);
+    }
+
+    @Step
+    public void verify_subtotal_price_list_page_is(String keyword){
+        assertTrue(dictionaryPage.firstHeaderPriceBasketList.containsText(keyword));
+    }
 
 }

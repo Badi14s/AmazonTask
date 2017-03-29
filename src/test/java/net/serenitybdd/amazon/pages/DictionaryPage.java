@@ -4,10 +4,6 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-
-import java.util.List;
 
 @DefaultUrl("http://www.amazon.co.uk")
 public class DictionaryPage extends PageObject {
@@ -25,7 +21,17 @@ public class DictionaryPage extends PageObject {
     public WebElementFacade booksLink;
 
     @FindBy (id = "searchDropdownBox")
+    //@FindBy (xpath = "//select[@class='nav-search-dropdown searchSelect']")
     public WebElementFacade searchDropDown;
+
+    @FindBy (xpath = "//div[@class='nav-search-scope nav-sprite']")
+    public WebElementFacade navSpriteDropDown;
+
+    @FindBy (xpath = "//select[@id='searchDropdownBox']//option")
+    public WebElementFacade optionsDropDown;
+
+    @FindBy (xpath = "//select[@id='searchDropdownBox']//option[text()='Books']")
+    public WebElementFacade optionBook;
 
     @FindBy (id="add-to-cart-button")
     public WebElementFacade addToBasketButton;
@@ -41,7 +47,7 @@ public class DictionaryPage extends PageObject {
     @FindBy (xpath = "//div[@class='a-row a-spacing-top-micro a-spacing-mini']//span[@class='sx-badge-text s-color-white']")
     public WebElementFacade firstHeaderBadgeResultsPage;
 
-    @FindBy (xpath = "//h3[@data-attribute='Hardcover']/../..//following-sibling::div[1]//span[@class='a-size-base a-color-price s-price a-text-bold']]")
+    @FindBy (xpath = "//h3[@data-attribute='Hardcover']/../../following-sibling::div[1]//span[contains(text(), '£')]")
     public WebElementFacade priceHeaderHardcoverResultsPage;
 
     // Details page
@@ -80,48 +86,30 @@ public class DictionaryPage extends PageObject {
     @FindBy (xpath = "//div[@data-item-count='2']")
     public WebElementFacade secondItemInBasketList;
 
+    @FindBy (xpath = "//span[@class='a-size-medium sc-product-title a-text-bold'][1]")
+    public WebElementFacade firstHeaderTitleBasketList;
 
 
-    public void enter_keywords(String keyword) {
-        searchTerms.type(keyword);
-    }
+    @FindBy (xpath = "//span[@class='a-size-small a-color-secondary sc-product-binding'][1]")
+    public WebElementFacade firstHeaderSellTypeBasketList;
 
-    public void lookup_terms() {
-        lookupButton.click();
-    }
+    @FindBy (xpath = "//span[@class='a-size-medium a-color-price sc-price sc-white-space-nowrap sc-product-price sc-price-sign a-text-bold'][1]")
+    public WebElementFacade firstHeaderPriceBasketList;
 
-//    public List<String> getDefinitions() {
-//        WebElementFacade definitionList = find(By.tagName("ol"));
-//        List<WebElement> results = definitionList.findElements(By.tagName("li"));
-//        return convert(results, toStrings());
+    @FindBy (xpath = "//span[@class='a-dropdown-prompt'][1]")
+    public WebElementFacade firstHeaderQuantityBasketList;
+
+    @FindBy (className = "a-size-medium a-color-price sc-price sc-white-space-nowrap  sc-price-sign")
+    public WebElementFacade subtotalPrice;
+
+
+//    public void click_shop_by_department() {
+//        shopByDepartment.click();
 //    }
 //
-//    private Converter<WebElement, String> toStrings() {
-//        return new Converter<WebElement, String>() {
-//            public String convert(WebElement from) {
-//                return from.getText();
-//            }
-//        };
+//    public void click_books_link() {
+//        booksLink.click();
 //    }
-
-    public void select_option_from_drop_down_menu(String kewword) {
-        Select select = new Select(searchDropDown);
-        List<WebElement> options = select.getAllSelectedOptions();
-        for (WebElement option : options) {
-            if(kewword.equals(option.getText()))
-                option.click();
-        }
-
-    }
-
-    public void click_shop_by_department() {
-        shopByDepartment.click();
-    }
-
-    public void clik_books_link() {
-        booksLink.click();
-    }
-
 
 
 }
